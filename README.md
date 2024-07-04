@@ -19,7 +19,7 @@ The system is composed of the following microservices:
 
 The services communicate with each other using HTTP for synchronous calls and RabbitMQ/Kafka for asynchronous messaging. The system also includes centralized logging and monitoring to ensure observability and maintainability.
 
-![Distributed System Architecture](./diagram.png)
+![Distributed System Architecture](diagram.png)
 
 ## Services
 
@@ -35,7 +35,7 @@ The services communicate with each other using HTTP for synchronous calls and Ra
 - **Port**: 5001
 - **Dependencies**: Mongo, RabbitMQ
 - **Description**: Handles user-related operations.
-- **Technologies**: FastAPI, MongoDB
+- **Technologies**: Node.js, Express, MongoDB
 
 ### Order Service
 
@@ -49,7 +49,7 @@ The services communicate with each other using HTTP for synchronous calls and Ra
 - **Port**: 5003
 - **Dependencies**: MySQL, RabbitMQ
 - **Description**: Processes payments.
-- **Technologies**: FastAPI, MySQL, RabbitMQ
+- **Technologies**: Node.js, Express, MySQL, RabbitMQ
 
 ### Notification Service
 
@@ -87,7 +87,7 @@ The services communicate with each other using HTTP for synchronous calls and Ra
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/distributed-system-microservices.git
+   git clone https://github.com/PrimeCodeLabs/distributed-system-microservices.git
    cd distributed-system-microservices
    ```
 

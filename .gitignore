@@ -1,0 +1,161 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+env/
+venv/
+env.bak/
+venv.bak/
+.venv/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Node modules
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Logs
+*.log
+
+# Local development files
+.vscode/
+.idea/
+*.swp
+*~
+
+# Database
+*.sqlite3
+*.db
+
+# Docker
+docker-compose.override.yml
+docker-compose.*.yml
+.docker/
+**/Dockerfile
+
+# Environment variables
+.env
+*.env
+
+# JWT
+*.jwt
+
+# Coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# macOS Thumbnails
+._*
+
+# macOS Files
+.Spotlight-V100
+.Trashes
+.VolumeIcon.icns
+.Icon?
+.DocumentRevisions-V100
+.fseventsd
+.TemporaryItems
+.apdisk
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Python virtual environment
+pip-log.txt
+pip-delete-this-directory.txt
+__pypackages__/
+
+# PyCharm
+.idea/
+
+# Pytest cache
+.pytest_cache/
+
+# MyPy
+.mypy_cache/
+
+# Bandit
+.bandit/
+
+# pytest
+.pytest_cache/
+.tox/
+
+# Coverage reports
+.coverage
+.coverage.*
+
+# pylint
+.pylintrc
+
+# test env
+test-env/
+
+# Miscellaneous
+*.bak
+*.tmp
+*~
+
+# IDEs and editors
+/.vscode/
+*.sublime-workspace
+*.sublime-project
+.project
+.idea/
+*.tmproj
+*.log
+*.csv
+
+# Local services data
+alerting/alertmanager/data/
+caching/redis/data/
+datastores/nosql/mongodb/data/
+datastores/sql/mysql/data/
+datastores/sql/postgres/data/
+logging/elasticsearch/data/
+logging/logstash/data/
+queues/rabbitmq/data/
+queues/kafka/data/
+
+# Compiled TypeScript
+*.tsbuildinfo

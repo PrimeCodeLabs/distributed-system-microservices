@@ -1,0 +1,167 @@
+version: '3.8'
+services:
+  auth_service:
+    build: ./auth_service/src
+    ports:
+      - "5000:5000"
+    depends_on:
+      - postgres
+    networks:
+      - app-network
+
+  user_service:
+    build: ./user_service/src
+    ports:
+      - "5001:5001"
+    depends_on:
+      - mongo
+      - rabbitmq
+    networks:
+      - app-network
+
+  order_service:
+    build: ./order_service/src
+    ports:
+      - "5002:5002"
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - app-network
+
+  payment_service:
+    build: ./payment_service/src
+    ports:
+      - "5003:5003"
+    depends_on:
+      - mysql
+      - rabbitmq
+    networks:
+      - app-network
+
+  notification_service:
+    container_name: notification-service
+    build:
+      context: ./notification_service/src
+    ports:
+      - "5004:5004"
+    depends_on:
+      - redis
+    networks:
+      - app-network
+
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: orders
+    networks:
+      - app-network
+
+  mysql:
+    image: mysql:8
+    platform: linux/amd64
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: payments
+    networks:
+      - app-network
+
+  mongo:
+    image: mongo:4.4
+    networks:
+      - app-network
+
+  redis:
+    image: redis:6
+    networks:
+      - app-network
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - app-network
+
+  # kafka:
+  #   image: wurstmeister/kafka:latest
+  #   platform: linux/amd64
+  #   ports:
+  #     - "9092:9092"
+  #   environment:
+  #     KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+  #     KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+  #     KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+  #   depends_on:
+  #     - zookeeper
+  #   networks:
+  #     - app-network
+
+  # zookeeper:
+  #   image: wurstmeister/zookeeper
+  #   platform: linux/amd64
+  #   ports:
+  #     - "2181:2181"
+  #   networks:
+  #     - app-network
+
+  prometheus:
+    image: prom/prometheus
+    platform: linux/amd64
+    ports:
+      - "9090:9090"
+    networks:
+      - app-network
+
+  grafana:
+    image: grafana/grafana
+    platform: linux/amd64
+    ports:
+      - "3001:3000"
+    networks:
+      - app-network
+
+  elasticsearch:
+    image: elasticsearch:7.10.1
+    platform: linux/amd64
+    environment:
+      discovery.type: single-node
+      xpack.security.enabled: "false"
+      bootstrap.system_call_filter: "false"
+    ports:
+      - "9200:9200"
+    networks:
+      - app-network
+
+  logstash:
+    image: logstash:7.10.1
+    platform: linux/amd64
+    networks:
+      - app-network
+
+  kibana:
+    image: kibana:7.10.1
+    platform: linux/amd64
+    environment:
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+    ports:
+      - "5601:5601"
+    networks:
+      - app-network
+    depends_on:
+      - elasticsearch
+
+  alertmanager:
+    image: prom/alertmanager
+    platform: linux/amd64
+    ports:
+      - "9093:9093"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

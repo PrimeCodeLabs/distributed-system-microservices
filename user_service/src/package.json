@@ -1,0 +1,19 @@
+{
+  "name": "user_service",
+  "version": "1.0.0",
+  "main": "consumer.ts",
+  "scripts": {
+    "start": "ts-node consumer.ts"
+  },
+  "dependencies": {
+    "typescript": "^4.3.5",
+    "ts-node": "^10.0.0",
+    "express": "^4.17.1",
+    "winston": "^3.3.3",
+    "amqplib": "^0.10.4"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/amqplib": "^0.10.5"
+  }
+}
